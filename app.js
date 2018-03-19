@@ -1,4 +1,4 @@
-const ourQuestions = [
+const myQuestions = [
   {
     question: "Was Kishimoto the creator of Naruto?",
     img: "img/1.jpg",
@@ -45,7 +45,7 @@ const ourQuestions = [
     correctAnswer: "b"
    },
    {
-    question: "Was Sasuke the main Character of the show Naruto?",
+    question: "In the show Naruto Shippuden, Tobi is secretly Madara?",
     img: "img/1.jpg",
     answers: {
       a: "true",
@@ -92,48 +92,91 @@ const ourQuestions = [
     ]
 
 
+var quizContainer = document.getElementById('quiz');
+var resultsContainer = document.getElementById('results');
+var submitButton = document.getElementById('submit');
 
+generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
 
+function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 
+	function showQuestions(questions, quizContainer){
+		// we'll need a place to store the output and the answer choices
+		var output = [];
+		var answers;
 
-for(var i=0; i<questions.length; i++){
-
-	var userAnswer = " ";
-	var numCorrect = 0;
-		// if answer is correct
-		if(userAnswer==questions[i].correctAnswer){
-			// add to the number of correct answers
-			numCorrect++;
+		// for each question...
+		for(var i=0; i<questions.length; i++){
 			
-        }
+			// first reset the list of answers
+			answers = [];
+            CreateTrueBtn();
+            function CreateTrueBtn(){
+                
+            
+            const trueBtn = document.createElement("button");
+            trueBtn.textContent = "True";
+            trueBtn.onclick = function() {
+                console.log(this.textContent);
+            }
+//            document.body.appendChild(trueBtn);
+            }
+			// add this question and its answers to the output
+			output.push(
+				'<div class="question">' + questions[i].question + '</div>'
+				+ '<div class="answers">' + answers.join('') + '</div>'
+			);
+//            output.push(
+//                '<button>True</button>'
+//            );
+            
+		}
 
-var a2 = document.getElementsById('q2');
-   for(i = 0; i < a3.length; i++) {
-      if(a3[i].checked) {
-         if(a3[i].value == 'augusta') {
-            correctAnswers++;
-            break;
-         }
-      }
-   }
-    
-//const t1Button = document.getElementById("true1");
-//const f1Button = document.getElementById("false1");
-//const t2Button = document.getElementById("true2");
-//const f2Button = document.getElementById("false2");
-//const t3Button = document.getElementById("true3");
-//const f3Button = document.getElementById("false3");
-//const t4Button = document.getElementById("true4");
-//const f4Button = document.getElementById("false4");
-//const t5Button = document.getElementById("true5");
-//const f5Button = document.getElementById("false5");
-//const t6Button = document.getElementById("true6");
-//const f6Button = document.getElementById("false6");
-//const t7Button = document.getElementById("true7");
-//const f7Button = document.getElementById("false7");
-//const t8Button = document.getElementById("true8");
-//const f8Button = document.getElementById("false8");
-//const t9Button = document.getElementById("true9");
-//const f9Button = document.getElementById("false9");
-//const t10Button = document.getElementById("true10");
-//const f10Button = document.getElementById("false10");
+		// finally combine our output list into one string of html and put it on the page
+		quizContainer.innerHTML = output.join('');
+	}
+
+
+	function showResults(questions, quizContainer, resultsContainer){
+		
+		// gather answer containers from our quiz
+		var answerContainers = quizContainer.querySelectorAll('.answers');
+		
+		// keep track of user's answers
+		var userAnswer = '';
+		var numCorrect = 0;
+		
+		// for each question...
+		for(var i=0; i<questions.length; i++){
+
+			// find selected answer
+			userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
+			
+			// if answer is correct
+			if(userAnswer===questions[i].correctAnswer){
+				// add to the number of correct answers
+				numCorrect++;
+				
+				// color the answers green
+				answerContainers[i].style.color = 'lightgreen';
+			}
+			// if answer is wrong or blank
+			else{
+				// color the answers red
+				answerContainers[i].style.color = 'red';
+			}
+		}
+
+		// show number of correct answers out of total
+		resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+	}
+
+	// show questions right away
+	showQuestions(questions, quizContainer);
+	
+	// on submit, show results
+	submitButton.onclick = function(){
+		showResults(questions, quizContainer, resultsContainer);
+	}
+
+}
