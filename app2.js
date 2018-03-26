@@ -28,7 +28,7 @@ const questions = [
 	{
 	    problem: "1) Was Kishimoto the creator of Naruto?",
 	    option:{A:true, B:false},
-	    answer:''
+	    answer:'true'
 	},
 	{
 	    problem: "2) Is goku from Howl's moving Castle?",
@@ -105,10 +105,13 @@ for (let i = 0; i < images.length; i++) {
 	   const options = document.createElement('button');
 	   options.classList.add("option");
 	   options.textContent = option;
+       var counter = 0;
        options.onclick = function() {
-//            console.log(key);
-//            console.log(option);
-//            console.log(this);
+       options.textContent = option;
+        if (questions.option == questions[i].answer.textContent) {
+            counter++;
+        }   
+           console.log(counter);
         };
         imgContainer.appendChild(options);
     }
