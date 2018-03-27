@@ -1,12 +1,3 @@
-//for(var i=0; i<question.length; i++){
-//var q = myQuestions[questionIndex];
-//q.textContent = q.question;
-// trueBtn.textContent = "True";
-//            trueBtn.onclick = function() {
-//                console.log(this.textContent);
-//            }
-//}
-
 //array of images
 const images = [
 	"images/Q1pic.jpg",
@@ -134,6 +125,8 @@ for (let i = 0; i < images.length; i++) {
         options.onclick = function () {
 //            console.log(questions[i].answer);
 //            console.log(this.textContent);
+            
+            options.disabled = true;
             if (questions[i].answer == this.textContent) {
                 counter++;
             }
@@ -141,9 +134,12 @@ for (let i = 0; i < images.length; i++) {
         };
         imgContainer.appendChild(options);
     }
-
-
-
     container.appendChild(imgContainer);
-
 }
+//if (counter>= 8){
+//  const result = createTextNode(counter + "/10 You are professional!"); 
+//} else if(counter>= 4 && counter<=7 ){
+//  const result2 = createTextNode(counter + "/10 Not bad!");  
+//} else if(counter<=3 ){
+//  const result3 = createTextNode(counter + "/10 You should learn more!");  
+//}
