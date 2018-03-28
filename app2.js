@@ -1,4 +1,4 @@
-//array of images
+//images
 const images = [
 	"images/Q1pic.jpg",
 	"images/Q2pic.jpg",
@@ -12,7 +12,7 @@ const images = [
 	"images/Q10pic.jpg"
 ];
 
-//array of questions and answers
+//questions and answers
 const questions = [
 
     {
@@ -29,7 +29,7 @@ const questions = [
             A: "true",
             B: "false"
         },
-        answer: "true"
+        answer: "false"
 	},
     {
         problem: "3) Tide Kubo was the Creator of Bleach?",
@@ -37,7 +37,7 @@ const questions = [
             A: "true",
             B: "false"
         },
-        answer: "false"
+        answer: "true"
 	},
     {
         problem: "4) Did Hayao Miyazaki Created Spirited away?",
@@ -45,7 +45,7 @@ const questions = [
             A: "true",
             B: "false"
         },
-        answer: ''
+        answer: "true"
 	},
     {
         problem: "5) Sailor Mars from from the Show Terraformars?",
@@ -53,7 +53,7 @@ const questions = [
             A: "true",
             B: "false"
         },
-        answer: ''
+        answer: "false"
 	},
     {
         problem: "6) In the show Naruto Shippuden, Tobi is secretly Madara?",
@@ -61,7 +61,7 @@ const questions = [
             A: "true",
             B: "false"
         },
-        answer: ''
+        answer: "false"
 	},
     {
         problem: "7) Was the The character Totoro in the Movie kiki Deliverys service?",
@@ -69,7 +69,7 @@ const questions = [
             A: "true",
             B: "false"
         },
-        answer: ''
+        answer: "false"
 	},
     {
         problem: "8) In the movie My Neighbor Totoro a Dog shaped bus stopped at the bus stop?",
@@ -77,7 +77,7 @@ const questions = [
             A: "true",
             B: "false"
         },
-        answer: ''
+        answer: "false"
 	},
     {
         problem: "9) Gundam wing was the best Gundam?(There's only ONE RIGHT ANSWER!..)?",
@@ -85,7 +85,7 @@ const questions = [
             A: "true",
             B: "false"
         },
-        answer: ''
+        answer: "true"
 	},
     {
         problem: "10) In The show cowboy bebop is the Character Ed a Male?",
@@ -93,7 +93,7 @@ const questions = [
             A: "true",
             B: "false"
         },
-        answer: ''
+        answer: "false"
 	}
 ];
 
@@ -123,9 +123,6 @@ for (let i = 0; i < images.length; i++) {
         var counter = 0;
 
         options.onclick = function () {
-//            console.log(questions[i].answer);
-//            console.log(this.textContent);
-            
             options.disabled = true;
             if (questions[i].answer == this.textContent) {
                 counter++;
@@ -136,10 +133,19 @@ for (let i = 0; i < images.length; i++) {
     }
     container.appendChild(imgContainer);
 }
-//if (counter>= 8){
-//  const result = createTextNode(counter + "/10 You are professional!"); 
-//} else if(counter>= 4 && counter<=7 ){
-//  const result2 = createTextNode(counter + "/10 Not bad!");  
-//} else if(counter<=3 ){
-//  const result3 = createTextNode(counter + "/10 You should learn more!");  
-//}
+
+//html elements
+var submitButton = document.getElementById('submit');
+var resultsContainer = document.getElementById('results');
+
+// on submit, show results
+submitButton.onclick = function () {
+    if (counter >= 8) {
+        resultsContainer.innerHTML = counter + ' out of 10 / You are anime guru';
+    } else if (counter >= 4 && counter <= 7) {
+        resultsContainer.innerHTML = counter + ' out of 10 / Not bad!';
+        r2.appendChild(result2);
+    } else if (counter <= 3) {
+        resultsContainer.innerHTML = counter + ' out of 10 / You should learn more!';
+    }
+}
