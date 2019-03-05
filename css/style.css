@@ -1,5 +1,6 @@
+/* import font */
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
+/* general style rules */
 body {
     max-width: 650px;
     margin-left: auto;
@@ -9,11 +10,11 @@ body {
     color: darkslategrey;
     font-family: 'Nunito', sans-serif;
 }
-
+/* title text style */
 h1 {
     color: white;
 }
-
+/* container style */
 #container {
     background-color: rgba(255, 255, 255, 0.9);
     text-align: center;
@@ -21,7 +22,7 @@ h1 {
     margin: 0 auto;
     padding: 20px;
 }
-
+/* button style */
 button {
     width: 60px;
     height: 30px;
@@ -44,7 +45,7 @@ button:hover {
     color: darkslategrey;
     font-size: 18px;
 }
-
+/* result texy style */
 #results {
     color: white;
     margin-bottom: 30px;
