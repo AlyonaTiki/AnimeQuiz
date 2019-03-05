@@ -13,12 +13,13 @@ const images = [
 ];
 
 //questions and answers
+//A and B are choices, answer is the correct answer
 const questions = [
 
     {
         problem: "1) Was Kishimoto the creator of Naruto?",
         option: {
-            A: "true",
+            A: "true", 
             B: "false"
         },
         answer: "true"
